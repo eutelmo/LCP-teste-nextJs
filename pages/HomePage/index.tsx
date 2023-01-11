@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ReactNode, useEffect, useState } from "react";
 import { Header } from "../../src/components/Header";
 import { api } from "../api/api";
@@ -10,18 +11,25 @@ interface HomePageProps {
 
 export function HomePage() {
   const [data, setData] = useState();
+  const [error, setError] = useState();
 
-  const getAllData = () => {
-    api
-      .get(
-        "/1/posts?apikey=br7rqAj1hIO2XdNR&apitoken=a13zjd512nszxose&include=bodies,tags,photos,albums,authors,labels,audios,documents,dossiers,collections&filter[isoLanguage]=pt&filter[metadata.url]=criancas-que-jogam-videojogos-revelam-um-melhor-desempenho-cognitivo"
-      )
-      .then((response) => {
-        setData(response.data);
-      });
+  const getAllData = async (e) => {
+    try {
+      let url = `/1/posts?apikey=br7rqAj1hIO2XdNR&apitoken=a13zjd512nszxose&include=bodies,tags,photos,albums,authors,labels,audios,documents,dossiers,collections&filter[isoLanguage]=pt`;
+      if (e) {
+        url += `&filter[metadata.url]=criancas-que-jogam-videojogos-revelam-um-melhor-desempenho-cognitivo`;
+      }
+      const { data } = await api.get(url);
+      setData(data);
+    } catch (error: any) {
+      setError(error);
+    }
   };
 
-  console.log(data);
+  //info -> data.dossiers.l10n
+
+  //console.log(data);
+  console.log(data.dossiers.l10n);
 
   useEffect(() => {
     getAllData();
@@ -46,20 +54,7 @@ export function HomePage() {
         <ImageBox>IMG</ImageBox>
 
         <Body>
-          <p>
-            A investigação envolveu duas mil crianças entre os nove e os dez
-            anos. Os participantes foram divididos em dois grupos: no primeiro,
-            estavam os que nunca jogaram videojogos e, no segundo,
-            encontravam-se as crianças que jogavam diariamente três ou mais
-            horas.
-          </p>
-          <p>
-            A investigação envolveu duas mil crianças entre os nove e os dez
-            anos. Os participantes foram divididos em dois grupos: no primeiro,
-            estavam os que nunca jogaram videojogos e, no segundo,
-            encontravam-se as crianças que jogavam diariamente três ou mais
-            horas.
-          </p>
+          <p>12323</p>
         </Body>
       </Container>
     </>
