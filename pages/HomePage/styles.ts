@@ -16,12 +16,15 @@ export const Subtitle = styled.p`
   font-size: 24px;
 `;
 
-export const ImageBox = styled.div``;
+export const ImageBox = styled.div`
+  width: 100%;
+  height: 400px;
+  position: relative;
+`;
 
 export const Body = styled.div`
   font-size: 19px;
-  p{
-
+  p {
     margin: 24px 0;
   }
 `;
