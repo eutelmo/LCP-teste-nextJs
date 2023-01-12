@@ -99,7 +99,7 @@ export function HomePage({ slug }) {
                 layout='fill'
               />
             </ImageBox>
-            <Body>{data?.data[1].l10n[0].bodies[0].text}</Body>
+            <Body dangerouslySetInnerHTML={{__html: data?.data[1].l10n[0].bodies[0].text}}/>
           </>
         )}
       </Container>
