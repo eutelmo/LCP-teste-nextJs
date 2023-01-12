@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 100%;
   height: 5rem;
   margin: 0 auto;
-  padding: 2rem 15rem 2rem 15rem;
+  padding: 2rem 10% 2rem 10%;
   display: flex;
 
   background: var(--black);

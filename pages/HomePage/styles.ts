@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: auto;
   width: 100%;
 
-  padding: 2rem 30rem 2rem 30rem;
+  padding: 2rem 20% 2rem 20%;
 `;
 
 export const Title = styled.h1`
