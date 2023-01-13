@@ -1,5 +1,5 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const api = axios.create({
-  baseURL: '',
-})
+  baseURL: "https://posts2-api.global.ssl.fastly.net",
+});
