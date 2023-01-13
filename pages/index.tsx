@@ -26,6 +26,7 @@ export default function Home({ page }) {
     <>
       <Header />
       <Container>
+        <h1>/slug</h1>
         {page.slug ? (
           <Title>Loading…</Title>
         ) : (
@@ -45,6 +46,11 @@ export default function Home({ page }) {
                 </ul>
               );
             })}
+
+            <h1>/category/slug</h1>
+            <Link href="/HomePage">
+              <p>Click Aqui</p>
+            </Link>
           </>
         )}
       </Container>
