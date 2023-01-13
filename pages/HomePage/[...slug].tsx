@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import { Body, Container, ImageBox, Subtitle, Title } from "./styles";
 
-export function HomePage({ slug }) {
+export function Page({ slug }) {
   console.log(slug);
 
   const [data, setData] = useState(slug);
@@ -56,9 +56,12 @@ export function HomePage({ slug }) {
 
 /* <- Dynamic Slug -> */
 
-export async function getServerSideProps() {
+export async function getStaticProps(context) {
+
+  const { params } = context
+
   const slug = await fetch(
-    `https://posts2-api.global.ssl.fastly.net/1/posts?apikey=br7rqAj1hIO2XdNR&apitoken=a13zjd512nszxose&include=bodies,tags,photos,albums,authors,labels,audios,documents,dossiers,collections&filter[isoLanguage]=pt`
+    `https://posts2-api.global.ssl.fastly.net/1/posts?apikey=br7rqAj1hIO2XdNR&apitoken=a13zjd512nszxose&include=bodies,tags,photos,albums,authors,labels,audios,documents,dossiers,collections&filter[isoLanguage]=pt&filter[metadata.url]=${params.slug}`
   )
     .then((resonseObject) => {
       if (resonseObject.ok) {
@@ -74,4 +77,22 @@ export async function getServerSideProps() {
       slug,
     },
   };
+}
+
+export async function getStaticPaths() {
+  const response = await fetch(
+    'https://posts2-api.global.ssl.fastly.net/1/posts?apikey=br7rqAj1hIO2XdNR&apitoken=a13zjd512nszxose&include=bodies,tags,photos,albums,authors,labels,audios,documents,dossiers,collections&filter[isoLanguage]=pt'
+  )
+  const data = await response.json()
+
+  const paths = data.map((slug) => {
+    {console.log(slug)}
+    return {
+      params: {
+        slug: `${slug.data.id}`,
+      },
+    }
+  })
+
+  return { paths, fallback: false }
 }
