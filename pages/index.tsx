@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Inter } from "@next/font/google";
-import { HomePage } from "./HomePage/[...slug]";
+import { HomePage } from "./HomePage/[slug]";
 import { Header } from "../src/components/Header";
 
 
