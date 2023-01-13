@@ -17,8 +17,6 @@ export async function getStaticProps() {
 }
 
 export default function HomePage({ page }) {
-  //console.log(page.data);
-
   return (
     <>
       <Header />
@@ -32,14 +30,11 @@ export default function HomePage({ page }) {
               {page.data.map((pages) => {
                 return (
                   <ul key={pages.id}>
-                    {/*console.log("inside",pages)*/}
                     <li>
                       {pages.l10n.map((e) => {
                         return (
                           <>
-                            <Link href={`/HomePage/${e.slug}`}>
-                              {e.title}
-                            </Link>
+                            <Link href={`/HomePage/${e.slug}`}>{e.title}</Link>
                           </>
                         );
                       })}
