@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { ReactNode, useEffect, useState } from "react";
 import { Header } from "../src/components/Header";
 import { api } from "./api/api";
 
@@ -13,8 +12,6 @@ export default function Page({ slug }) {
   const baseUrl = slug?.data[0].baseUrl;
   const UrlImg = slug?.data[0].l10n[0].image;
   const image = `${baseUrl}/${UrlImg}`;
-
-
 
   /* <- Function src for NextImg -> */
   const myLoader = ({ quality }) => {
@@ -38,9 +35,12 @@ export default function Page({ slug }) {
                 alt="Blog Picture"
                 fill
                 quality={75}
-                loading='lazy'
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA..."
               />
             </ImageBox>
+
             <Body
               dangerouslySetInnerHTML={{
                 __html: slug?.data[0].l10n[0].bodies[0].text,

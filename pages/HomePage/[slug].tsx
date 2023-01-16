@@ -9,9 +9,6 @@ import Image from "next/image";
 import { Body, Container, ImageBox, Subtitle, Title } from "./styles";
 
 export default function Page({ slug }) {
-  const [data, setData] = useState(slug.data);
-  const [error, setError] = useState();
-
   /* <- Dynamic Img Src -> */
   const baseUrl = slug?.data[0].baseUrl;
   const UrlImg = slug?.data[0].l10n[0].image;
@@ -34,10 +31,14 @@ export default function Page({ slug }) {
             <Subtitle>{slug?.data[0].l10n[0].description}</Subtitle>
             <ImageBox>
               <Image
-                loader={myLoader}
                 src={image}
+                loader={myLoader}
                 alt="Blog Picture"
-                layout="fill"
+                fill
+                quality={75}
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA..."
               />
             </ImageBox>
             <Body
