@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { Body, Container, ImageBox, Subtitle, Title } from "./styles";
+import { ErrorPage } from "./ErrorPage";
 
 export default function Page({ slug }) {
   /* <- Dynamic Img Src -> */
@@ -63,8 +64,7 @@ export async function getStaticProps({ params }) {
       if (resonseObject.ok) {
         return resonseObject.json();
       }
-
-      throw new Error(":/");
+       throw new TypeError("Ops, CMS didn't return a reasonable response.");
     })
     .then((resonseObject) => resonseObject);
 
@@ -76,16 +76,13 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const response = await fetch(
-    "https://posts2-api.global.ssl.fastly.net/1/posts?apikey=br7rqAj1hIO2XdNR&apitoken=a13zjd512nszxose&include=bodies,tags,photos,albums,authors,labels,audios,documents,dossiers,collections&filter[isoLanguage]=pt"
-  );
-  const data = await response.json();
+
 
   return {
     paths: [
       {
         params: {
-          slug: "eua-vao-comecar-a-vender-carne-criada-em-laboratorio",
+          slug: "",
         },
       },
     ],
