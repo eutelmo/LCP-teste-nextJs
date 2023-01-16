@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: fixed;
   z-index: 9996;
   width: 100%;
   height: 5rem;
@@ -18,7 +19,7 @@ export const NavLinks = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  svg{
+  svg {
     margin-right: 2rem;
   }
 
@@ -27,18 +28,14 @@ export const NavLinks = styled.div`
     color: var(--gray);
     font-size: 1rem;
     margin-right: 2rem;
-
-    
   }
   a:hover {
     color: var(--success);
   }
   :last-child {
-      margin-right: 0;
-    }
-
+    margin-right: 0;
+  }
 `;
 export const ActiveLink = styled.div``;
 
-export const Widgets = styled.div`
-`;
+export const Widgets = styled.div``;
