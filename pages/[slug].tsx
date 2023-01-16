@@ -14,9 +14,11 @@ export default function Page({ slug }) {
   const UrlImg = slug?.data[0].l10n[0].image;
   const image = `${baseUrl}/${UrlImg}`;
 
+
+
   /* <- Function src for NextImg -> */
-  const myLoader = ({ src }) => {
-    return image;
+  const myLoader = ({ quality }) => {
+    return `${slug?.data[0].baseUrl}/${slug?.data[0].l10n[0].image}`;
   };
 
   return (
@@ -31,10 +33,12 @@ export default function Page({ slug }) {
             <Subtitle>{slug?.data[0].l10n[0].description}</Subtitle>
             <ImageBox>
               <Image
-                loader={myLoader}
                 src={image}
+                loader={myLoader}
                 alt="Blog Picture"
-                layout="fill"
+                fill
+                quality={75}
+                loading='lazy'
               />
             </ImageBox>
             <Body
