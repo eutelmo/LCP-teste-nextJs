@@ -14,6 +14,10 @@ export default function Page({ slug }) {
   const UrlImg = slug?.data[0].l10n[0].image;
   const image = `${baseUrl}/${UrlImg}`;
 
+  const toBase64 = (str: string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str)
 
 
   /* <- Function src for NextImg -> */
@@ -39,6 +43,8 @@ export default function Page({ slug }) {
                 fill
                 quality={75}
                 loading='lazy'
+                placeholder="blur"
+                blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA...'
               />
             </ImageBox>
             <Body
