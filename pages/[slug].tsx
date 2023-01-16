@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { ReactNode, useEffect, useState } from "react";
 import { Header } from "../src/components/Header";
 import { api } from "./api/api";
 
@@ -15,10 +14,9 @@ export default function Page({ slug }) {
   const image = `${baseUrl}/${UrlImg}`;
 
   const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str)
-
+    typeof window === "undefined"
+      ? Buffer.from(str).toString("base64")
+      : window.btoa(str);
 
   /* <- Function src for NextImg -> */
   const myLoader = ({ quality }) => {
@@ -42,11 +40,12 @@ export default function Page({ slug }) {
                 alt="Blog Picture"
                 fill
                 quality={75}
-                loading='lazy'
+                loading="lazy"
                 placeholder="blur"
-                blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA...'
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA..."
               />
             </ImageBox>
+
             <Body
               dangerouslySetInnerHTML={{
                 __html: slug?.data[0].l10n[0].bodies[0].text,
